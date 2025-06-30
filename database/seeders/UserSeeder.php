@@ -12,10 +12,10 @@ class UserSeeder extends Seeder
     {
         // Create admin user with a hashed password and verified email
         User::create([
-            'name' => 'Vivek',
-            'email' => 'vivek@CoinMews.io',
-            'username' => 'vivek',
-            'password' => Hash::make('Vivek@373#92'),
+            'name' => 'prince',
+            'email' => 'prince@coinmews.io',
+            'username' => 'prince',
+            'password' => Hash::make('Prince@373#923'),
             'is_admin' => true,
             'email_verified_at' => now(),
             'bio' => 'Administrator of CoinMews',
