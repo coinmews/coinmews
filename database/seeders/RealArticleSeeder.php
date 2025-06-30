@@ -19,7 +19,7 @@ class RealArticleSeeder extends Seeder
         $bannerImage = null;
 
         // Get existing admin users
-        $prince = User::where('email', 'prince@CoinMews.io')->first();
+        $prince = User::where('email', 'prince@coinmews.io')->first();
         $radhe = User::where('email', 'radhe@CoinMews.io')->first();
 
         if (!$prince || !$radhe) {
