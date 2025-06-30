@@ -14,73 +14,47 @@ class WelcomeController extends Controller
     // Home Page
     public function index()
     {
+        // Define the relationships to eager load
+        $with = [
+            'author:id,name,username',
+            'category:id,name,slug',
+            'comments' => function ($query) {
+                $query->where('is_spam', false)->select('id', 'commentable_id', 'content', 'user_id', 'created_at');
+            },
+        ];
 
         // Fetch articles by content type (top 6 per type for homepage)
-        $newsArticles = Article::news()->published()->with(['author', 'category', 'comments' => function ($query) {
-            $query->where('is_spam', false);
-        }])->latest()->take(6)->get();
-        $shortNews = Article::shortNews()->published()->with(['author', 'category', 'comments' => function ($query) {
-            $query->where('is_spam', false);
-        }])->latest()->take(6)->get();
-        $blogArticles = Article::blog()->published()->with(['author', 'category', 'comments' => function ($query) {
-            $query->where('is_spam', false);
-        }])->latest()->take(6)->get();
-        $pressReleases = Article::pressReleases()->published()->with(['author', 'category', 'comments' => function ($query) {
-            $query->where('is_spam', false);
-        }])->latest()->take(6)->get();
-        $sponsoredArticles = Article::sponsored()->published()->with(['author', 'category', 'comments' => function ($query) {
-            $query->where('is_spam', false);
-        }])->latest()->take(6)->get();
-        $pricePredictions = Article::pricePredictions()->published()->with(['author', 'category', 'comments' => function ($query) {
-            $query->where('is_spam', false);
-        }])->latest()->take(6)->get();
-        $guestPosts = Article::guestPosts()->published()->with(['author', 'category', 'comments' => function ($query) {
-            $query->where('is_spam', false);
-        }])->latest()->take(3)->get();
-        $researchReports = Article::researchReports()->published()->with(['author', 'category', 'comments' => function ($query) {
-            $query->where('is_spam', false);
-        }])->latest()->take(6)->get();
-        $web3Bulletins = Article::web3Bulletins()->published()->with(['author', 'category', 'comments' => function ($query) {
-            $query->where('is_spam', false);
-        }])->latest()->take(6)->get();
-        $webStories = Article::webStories()->published()->with(['author', 'category', 'comments' => function ($query) {
-            $query->where('is_spam', false);
-        }])->latest()->take(6)->get();
+        $newsArticles = Article::news()->published()->with($with)->latest('published_at')->take(6)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
+        $shortNews = Article::shortNews()->published()->with($with)->latest('published_at')->take(6)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
+        $blogArticles = Article::blog()->published()->with($with)->latest('published_at')->take(6)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
+        $pressReleases = Article::pressReleases()->published()->with($with)->latest('published_at')->take(6)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
+        $sponsoredArticles = Article::sponsored()->published()->with($with)->latest('published_at')->take(6)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
+        $pricePredictions = Article::pricePredictions()->published()->with($with)->latest('published_at')->take(6)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
+        $guestPosts = Article::guestPosts()->published()->with($with)->latest('published_at')->take(3)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
+        $researchReports = Article::researchReports()->published()->with($with)->latest('published_at')->take(6)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
+        $web3Bulletins = Article::web3Bulletins()->published()->with($with)->latest('published_at')->take(6)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
+        $webStories = Article::webStories()->published()->with($with)->latest('published_at')->take(6)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
 
         // Apply filters
-        $featuredArticles = Article::featured()->published()->with(['author', 'category', 'comments' => function ($query) {
-            $query->where('is_spam', false);
-        }])->latest()->take(15)->get();
-        $breakingNews = Article::breakingNews()->published()->with(['author', 'category', 'comments' => function ($query) {
-            $query->where('is_spam', false);
-        }])->latest()->take(15)->get();
-        $trendingArticles = Article::trending()->published()->with(['author', 'category', 'comments' => function ($query) {
-            $query->where('is_spam', false);
-        }])->latest()->take(15)->get();
-        $topArticles = Article::topByViewCount()->published()->with(['author', 'category', 'comments' => function ($query) {
-            $query->where('is_spam', false);
-        }])->take(15)->get();
-        $latestReactedArticles = Article::latestReacted()->published()->with(['author', 'category', 'comments' => function ($query) {
-            $query->where('is_spam', false);
-        }])->take(15)->get();
-        $timeSensitiveArticles = Article::timeSensitive()->published()->with(['author', 'category', 'comments' => function ($query) {
-            $query->where('is_spam', false);
-        }])->latest()->take(15)->get();
+        $featuredArticles = Article::featured()->published()->with($with)->latest('published_at')->take(15)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
+        $breakingNews = Article::breakingNews()->published()->with($with)->latest('published_at')->take(15)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
+        $trendingArticles = Article::trending()->published()->with($with)->latest('published_at')->take(15)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
+        $topArticles = Article::topByViewCount()->published()->with($with)->take(15)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
+        $latestReactedArticles = Article::latestReacted()->published()->with($with)->take(15)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
+        $timeSensitiveArticles = Article::timeSensitive()->published()->with($with)->latest('published_at')->take(15)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
 
-        // Fetch all published articles
+        // Fetch all published articles (for category section)
         $articles = Article::published()
-            ->with(['author', 'category', 'comments' => function ($query) {
-                $query->where('is_spam', false);
-            }])
-            ->latest()
-            ->take(15)  // Limit to 10 articles for CategoryByArticlesSection
-            ->get();
+            ->with($with)
+            ->latest('published_at')
+            ->take(15)
+            ->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
 
         // Fetch categories and tags
         $categories = Category::ordered()
             ->root()
             ->withCount('articles')
-            ->get()
+            ->get(['id','name','slug','description','parent_id','order','created_at','updated_at'])
             ->map(function ($category) {
                 return [
                     'id' => $category->id,
@@ -94,13 +68,13 @@ class WelcomeController extends Controller
                     'updated_at' => $category->updated_at,
                 ];
             });
-        $tags = Tag::trending()->get();
+        $tags = Tag::trending()->get(['id','name','slug']);
 
         // Fetch comments (optional, you can choose whether to include this)
-        $comments = Comment::with('user')->latest()->take(10)->get();
+        $comments = Comment::with('user:id,name')->latest()->take(10)->get(['id','commentable_id','content','user_id','created_at']);
 
         // Add to index() method
-        $liveFeedNews = Article::liveFeed()->get();
+        $liveFeedNews = Article::liveFeed()->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
 
         // Pass all the data to Inertia view
         return Inertia::render('welcome', [
