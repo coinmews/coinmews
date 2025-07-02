@@ -22,10 +22,6 @@ class ListSubmissions extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
-            Actions\Action::make('export')
-                ->label('Export Submissions')
-                ->icon('heroicon-o-arrow-down-tray')
-                ->action(fn () => $this->exportSubmissions()),
         ];
     }
 
