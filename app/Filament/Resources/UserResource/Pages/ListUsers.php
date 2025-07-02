@@ -21,10 +21,6 @@ class ListUsers extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
-            Action::make('export')
-                ->label('Export Users')
-                ->icon('heroicon-o-arrow-down-tray')
-                ->action(fn () => $this->exportUsers()),
         ];
     }
 

@@ -17,7 +17,7 @@ export default function TermsPage() {
                 <meta property="og:site_name" content="CoinMews" />
                 <meta name="twitter:card" content="summary" />
                 <meta name="twitter:title" content="Terms of Service - CoinMews" />
-            <Head title="Terms of Service - CoinMews" />
+            </Head>
             <Header />
             <main className="mx-auto max-w-4xl px-4 py-12 lg:px-8">
                 <article className="prose prose-neutral dark:prose-invert lg:prose-lg max-w-none">
