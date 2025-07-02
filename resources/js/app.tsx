@@ -14,20 +14,20 @@ createInertiaApp({
     setup({ el, App, props }) {
         const root = createRoot(el);
 
-        // Set lang attribute for accessibility
-        useEffect(() => {
-            if (typeof document !== 'undefined') {
-                document.documentElement.lang = 'en';
-            }
-        }, []);
-
-        // Wrap the App component to include BackToTop
-        const AppWithBackToTop = () => (
-            <>
-                <App {...props} />
-                <BackToTop />
-            </>
-        );
+        // Wrap the App component to include BackToTop and set lang attribute
+        const AppWithBackToTop = () => {
+            useEffect(() => {
+                if (typeof document !== 'undefined') {
+                    document.documentElement.lang = 'en';
+                }
+            }, []);
+            return (
+                <>
+                    <App {...props} />
+                    <BackToTop />
+                </>
+            );
+        };
 
         root.render(<AppWithBackToTop />);
     },

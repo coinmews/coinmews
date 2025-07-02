@@ -1,1 +1,0 @@
-import{j as n,t as o,c as a}from"./app-34TC90C3.js";function i({className:t="",children:r,...e}){return n.jsx(o,{className:a("text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500",t),...e,children:r})}export{i as T};
