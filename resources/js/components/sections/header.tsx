@@ -170,7 +170,7 @@ export default function Header() {
     const searchTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
 
     useEffect(() => {
-        let lastTime = 0;
+        const lastTime = 0;
         const throttle = 16; // ~60fps
 
         const calculateScrollProgress = (time: number) => {
