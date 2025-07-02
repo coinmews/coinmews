@@ -62,7 +62,7 @@ interface CryptoExchangeListingShowProps extends PageProps {
     };
 }
 
-export default function Show({ auth, listing, relatedListings, meta }: CryptoExchangeListingShowProps) {
+export default function Show({ auth, listing, relatedListings, meta, structuredData }: CryptoExchangeListingShowProps & { structuredData: any }) {
     // Ensure listing and its properties are safe to access
     const safeListing = listing || {};
 
@@ -135,9 +135,11 @@ export default function Show({ auth, listing, relatedListings, meta }: CryptoExc
 
     return (
         <div>
-            <Head title={meta.title}>
+            <Head>
+                <title>{meta.title}</title>
                 <meta name="description" content={meta.description ?? ''} />
                 <meta name="keywords" content={meta.keywords} />
+                <link rel="canonical" href={meta.canonical} />
                 <meta property="og:title" content={meta.og.title} />
                 <meta property="og:description" content={meta.og.description ?? ''} />
                 {meta.og.image && <meta property="og:image" content={meta.og.image} />}
@@ -147,6 +149,7 @@ export default function Show({ auth, listing, relatedListings, meta }: CryptoExc
                 <meta name="twitter:title" content={meta.twitter.title} />
                 <meta name="twitter:description" content={meta.twitter.description ?? ''} />
                 {meta.twitter.image && <meta name="twitter:image" content={meta.twitter.image} />}
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
             </Head>
 
             <Header />
@@ -168,6 +171,8 @@ export default function Show({ auth, listing, relatedListings, meta }: CryptoExc
                         />
                     </div>
                 </div>
+
+                <h1 className="text-4xl font-bold">{meta.title}</h1>
 
                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                     {/* Main Content Column */}

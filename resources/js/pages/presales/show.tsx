@@ -82,7 +82,7 @@ export default function Show({ presale, similarPresales, structuredData, meta }:
                 <meta name="twitter:image" content={meta.twitter.image ?? ''} />
 
                 {/* Structured Data */}
-                <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
             </Head>
 
             <Header />
@@ -97,6 +97,7 @@ export default function Show({ presale, similarPresales, structuredData, meta }:
                                     src={presale.logo_url || '/images/placeholder-logo.png'}
                                     alt={presale.name}
                                     className="border-muted h-20 w-20 rounded-full border-2"
+                                    loading="lazy"
                                 />
                                 <div>
                                     <CardTitle className="text-3xl">

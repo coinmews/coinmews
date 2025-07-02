@@ -158,7 +158,35 @@ export default function AllArticlesPage({ articles, categories, filters, filterC
 
     return (
         <>
-            <Head title="All Articles" />
+            <Head>
+                <title>All Articles | CoinMews</title>
+                <meta name="description" content="Browse all cryptocurrency articles, research, and insights on CoinMews. Stay informed with the latest in blockchain and crypto." />
+                <meta name="keywords" content="crypto articles, blockchain research, cryptocurrency insights, CoinMews" />
+                <link rel="canonical" href={window.location.origin + '/articles'} />
+                <meta property="og:title" content="All Articles | CoinMews" />
+                <meta property="og:description" content="Browse all cryptocurrency articles, research, and insights on CoinMews. Stay informed with the latest in blockchain and crypto." />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={window.location.origin + '/articles'} />
+                <meta property="og:image" content="/favicon.png" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="All Articles | CoinMews" />
+                <meta name="twitter:description" content="Browse all cryptocurrency articles, research, and insights on CoinMews. Stay informed with the latest in blockchain and crypto." />
+                <meta name="twitter:image" content="/favicon.png" />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                    '@context': 'https://schema.org',
+                    '@type': 'CollectionPage',
+                    'name': 'All Articles',
+                    'description': 'Browse all cryptocurrency articles, research, and insights.',
+                    'url': window.location.origin + '/articles',
+                    'breadcrumb': {
+                        '@type': 'BreadcrumbList',
+                        'itemListElement': [
+                            { '@type': 'ListItem', position: 1, name: 'Home', item: window.location.origin },
+                            { '@type': 'ListItem', position: 2, name: 'Articles', item: window.location.origin + '/articles' }
+                        ]
+                    }
+                }) }} />
+            </Head>
             <Header />
 
             {/* Top Ad Space Slider */}
@@ -170,7 +198,7 @@ export default function AllArticlesPage({ articles, categories, filters, filterC
                             className={`w-full flex-shrink-0 transition-all duration-500 ease-in-out${index === currentSlide ? 'block' : 'hidden'}`}
                         >
                             <a href={slide.link} target="_blank" rel="noopener noreferrer">
-                                <img src={slide.image} alt="Advertisement" className="h-auto w-full rounded-lg object-cover" />
+                                <img src={slide.image} alt="Articles Advertisement" loading="lazy" className="h-auto w-full rounded-lg object-cover" />
                             </a>
                         </div>
                     ))}
@@ -198,7 +226,7 @@ export default function AllArticlesPage({ articles, categories, filters, filterC
             <div className="mx-auto max-w-7xl px-4 lg:px-6">
                 <div className="my-8 space-y-4">
                     <div>
-                        <h1 className="text-3xl font-bold">All Articles</h1>
+                        <h1 className="text-4xl font-bold">All Articles</h1>
                         <p className="mt-2 max-w-3xl text-gray-600">
                             Explore our comprehensive collection of articles, covering everything from news and blogs to press releases and research
                             reports. Filter by category, content type, or browse our trending and featured content.

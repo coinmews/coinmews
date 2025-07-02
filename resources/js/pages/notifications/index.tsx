@@ -61,12 +61,40 @@ const notificationItems = [
 export default function Notifications() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Notifications" />
+            <Head>
+                <title>Notifications | CoinMews</title>
+                <meta name="description" content="Check your latest notifications and updates on CoinMews. Stay informed about new articles, comments, and crypto news." />
+                <meta name="keywords" content="crypto notifications, news alerts, CoinMews" />
+                <link rel="canonical" href={window.location.origin + '/notifications'} />
+                <meta property="og:title" content="Notifications | CoinMews" />
+                <meta property="og:description" content="Check your latest notifications and updates on CoinMews. Stay informed about new articles, comments, and crypto news." />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={window.location.origin + '/notifications'} />
+                <meta property="og:image" content="/favicon.png" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Notifications | CoinMews" />
+                <meta name="twitter:description" content="Check your latest notifications and updates on CoinMews. Stay informed about new articles, comments, and crypto news." />
+                <meta name="twitter:image" content="/favicon.png" />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                    '@context': 'https://schema.org',
+                    '@type': 'CollectionPage',
+                    'name': 'Notifications',
+                    'description': 'Check your latest notifications and updates.',
+                    'url': window.location.origin + '/notifications',
+                    'breadcrumb': {
+                        '@type': 'BreadcrumbList',
+                        'itemListElement': [
+                            { '@type': 'ListItem', position: 1, name: 'Home', item: window.location.origin },
+                            { '@type': 'ListItem', position: 2, name: 'Notifications', item: window.location.origin + '/notifications' }
+                        ]
+                    }
+                }) }} />
+            </Head>
 
             <div className="flex flex-1 flex-col gap-4 px-4 py-6 md:gap-8">
                 <div className="flex items-center justify-between">
                     <div>
-                        <h1 className="text-2xl font-semibold tracking-tight">Notifications</h1>
+                        <h1 className="text-4xl font-bold">Notifications</h1>
                         <p className="text-muted-foreground">Stay updated with your latest interactions and updates</p>
                     </div>
                     <div className="flex items-center gap-2">

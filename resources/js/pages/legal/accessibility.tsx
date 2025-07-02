@@ -5,7 +5,34 @@ import { Head } from '@inertiajs/react';
 export default function AccessibilityPage() {
     return (
         <>
-            <Head title="Accessibility Statement - CoinMews" />
+            <Head>
+                <title>Accessibility Statement - CoinMews</title>
+                <meta name="description" content="Read the Accessibility Statement for CoinMews. Learn about our commitment to digital accessibility and the steps we take to ensure an inclusive experience for all users." />
+                <meta name="keywords" content="accessibility, CoinMews, accessibility statement, WCAG, inclusive design, crypto news" />
+                <link rel="canonical" href={typeof window !== 'undefined' ? window.location.origin + '/legal/accessibility' : 'https://coinmews.io/legal/accessibility'} />
+                <meta property="og:title" content="Accessibility Statement - CoinMews" />
+                <meta property="og:description" content="Read the Accessibility Statement for CoinMews. Learn about our commitment to digital accessibility and the steps we take to ensure an inclusive experience for all users." />
+                <meta property="og:type" content="article" />
+                <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : 'https://coinmews.io/legal/accessibility'} />
+                <meta property="og:site_name" content="CoinMews" />
+                <meta name="twitter:card" content="summary" />
+                <meta name="twitter:title" content="Accessibility Statement - CoinMews" />
+                <meta name="twitter:description" content="Read the Accessibility Statement for CoinMews. Learn about our commitment to digital accessibility and the steps we take to ensure an inclusive experience for all users." />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                    '@context': 'https://schema.org',
+                    '@type': 'WebPage',
+                    'name': 'Accessibility Statement - CoinMews',
+                    'description': 'Read the Accessibility Statement for CoinMews. Learn about our commitment to digital accessibility and the steps we take to ensure an inclusive experience for all users.',
+                    'url': typeof window !== 'undefined' ? window.location.origin + '/legal/accessibility' : 'https://coinmews.io/legal/accessibility',
+                    'breadcrumb': {
+                        '@type': 'BreadcrumbList',
+                        'itemListElement': [
+                            { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': typeof window !== 'undefined' ? window.location.origin : 'https://coinmews.io' },
+                            { '@type': 'ListItem', 'position': 2, 'name': 'Accessibility Statement', 'item': typeof window !== 'undefined' ? window.location.origin + '/legal/accessibility' : 'https://coinmews.io/legal/accessibility' }
+                        ]
+                    }
+                }) }} />
+            </Head>
             <Header />
             <main className="mx-auto max-w-4xl px-4 py-12 lg:px-8">
                 <article className="prose prose-neutral dark:prose-invert lg:prose-lg max-w-none">

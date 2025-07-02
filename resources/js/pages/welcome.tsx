@@ -86,6 +86,7 @@ const WelcomePage: React.FC<WelcomePageProps> = ({
                         src={article.banner_url || '/default-banner.png'}
                         alt={article.title}
                         className="h-full w-full object-cover transition-all duration-300 group-hover:scale-105"
+                        loading="lazy"
                         onError={(e) => {
                             const target = e.target as HTMLImageElement;
                             target.src = '/default-banner.png';
@@ -143,6 +144,7 @@ const WelcomePage: React.FC<WelcomePageProps> = ({
                         src={article.banner_url || '/default-banner.png'}
                         alt={article.title}
                         className="h-full w-full object-cover transition-all duration-300 group-hover:scale-105"
+                        loading="lazy"
                         onError={(e) => {
                             const target = e.target as HTMLImageElement;
                             target.src = '/default-banner.png';
@@ -183,10 +185,48 @@ const WelcomePage: React.FC<WelcomePageProps> = ({
 
     return (
         <>
-            <Head title="CoinMews - Latest Crypto News, Prices & Insights">
-                <link rel="preconnect" href="https://fonts.bunny.net" />
-                <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&family=instrument-sans:400,500,600" rel="stylesheet" />
+            <Head>
+                <title>CoinMews - Latest Crypto News, Prices & Insights</title>
+                <meta name="description" content="CoinMews is your #1 source for the latest crypto news, prices, insights, and analysis. Stay ahead in the blockchain world with expert articles, live tickers, and trending stories." />
+                <meta name="keywords" content="crypto news, cryptocurrency prices, blockchain insights, bitcoin, ethereum, altcoins, CoinMews" />
+                <link rel="canonical" href={typeof window !== 'undefined' ? window.location.origin : 'https://coinmews.io'} />
+                <meta property="og:title" content="CoinMews - Latest Crypto News, Prices & Insights" />
+                <meta property="og:description" content="CoinMews is your #1 source for the latest crypto news, prices, insights, and analysis. Stay ahead in the blockchain world with expert articles, live tickers, and trending stories." />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={typeof window !== 'undefined' ? window.location.origin : 'https://coinmews.io'} />
+                <meta property="og:image" content="/favicon.png" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="CoinMews - Latest Crypto News, Prices & Insights" />
+                <meta name="twitter:description" content="CoinMews is your #1 source for the latest crypto news, prices, insights, and analysis. Stay ahead in the blockchain world with expert articles, live tickers, and trending stories." />
+                <meta name="twitter:image" content="/favicon.png" />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                    '@context': 'https://schema.org',
+                    '@type': 'Organization',
+                    'name': 'CoinMews',
+                    'url': typeof window !== 'undefined' ? window.location.origin : 'https://coinmews.io',
+                    'logo': '/favicon.png',
+                    'sameAs': [
+                        'https://twitter.com/coinmews',
+                        'https://facebook.com/coinmews',
+                        'https://linkedin.com/company/coinmews'
+                    ],
+                    'description': 'CoinMews is your #1 source for the latest crypto news, prices, insights, and analysis.'
+                }) }} />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                    '@context': 'https://schema.org',
+                    '@type': 'WebSite',
+                    'name': 'CoinMews',
+                    'url': typeof window !== 'undefined' ? window.location.origin : 'https://coinmews.io',
+                    'potentialAction': {
+                        '@type': 'SearchAction',
+                        'target': typeof window !== 'undefined' ? window.location.origin + '/search?q={search_term_string}' : 'https://coinmews.io/search?q={search_term_string}',
+                        'query-input': 'required name=search_term_string'
+                    }
+                }) }} />
+                <html lang="en" />
             </Head>
+
+            <a href="#main-content" className="sr-only focus:not-sr-only absolute top-0 left-0 z-50 bg-primary text-white p-2">Skip to main content</a>
 
             <CryptoPriceTicker />
             <Header />

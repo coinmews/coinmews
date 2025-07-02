@@ -48,12 +48,40 @@ export default function Submissions({ submissions }: SubmissionsProps) {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="My Submissions" />
+            <Head>
+                <title>Submissions | CoinMews</title>
+                <meta name="description" content="View and manage your submitted articles, news, and content on CoinMews. Track the status of your crypto submissions." />
+                <meta name="keywords" content="crypto submissions, submitted articles, CoinMews" />
+                <link rel="canonical" href={window.location.origin + '/submissions'} />
+                <meta property="og:title" content="Submissions | CoinMews" />
+                <meta property="og:description" content="View and manage your submitted articles, news, and content on CoinMews. Track the status of your crypto submissions." />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={window.location.origin + '/submissions'} />
+                <meta property="og:image" content="/favicon.png" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Submissions | CoinMews" />
+                <meta name="twitter:description" content="View and manage your submitted articles, news, and content on CoinMews. Track the status of your crypto submissions." />
+                <meta name="twitter:image" content="/favicon.png" />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                    '@context': 'https://schema.org',
+                    '@type': 'CollectionPage',
+                    'name': 'Submissions',
+                    'description': 'View and manage your submitted articles, news, and content.',
+                    'url': window.location.origin + '/submissions',
+                    'breadcrumb': {
+                        '@type': 'BreadcrumbList',
+                        'itemListElement': [
+                            { '@type': 'ListItem', position: 1, name: 'Home', item: window.location.origin },
+                            { '@type': 'ListItem', position: 2, name: 'Submissions', item: window.location.origin + '/submissions' }
+                        ]
+                    }
+                }) }} />
+            </Head>
 
             <div className="space-y-6 px-4 py-6">
                 <div className="flex items-center justify-between">
                     <div>
-                        <h1 className="text-2xl font-semibold tracking-tight">My Submissions</h1>
+                        <h1 className="text-4xl font-bold">Submissions</h1>
                         <p className="text-muted-foreground">Manage and track your content submissions</p>
                     </div>
                     <Button asChild>

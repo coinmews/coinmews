@@ -101,7 +101,35 @@ export default function CategoriesIndex({ categories = [] }: Props) {
 
     return (
         <>
-            <Head title="Categories - CoinMews" />
+            <Head>
+                <title>Categories - CoinMews</title>
+                <meta name="description" content="Explore all crypto and blockchain categories on CoinMews. Find news, analysis, and insights by topic." />
+                <meta name="keywords" content="crypto categories, blockchain topics, CoinMews" />
+                <link rel="canonical" href={window.location.origin + '/categories'} />
+                <meta property="og:title" content="Categories - CoinMews" />
+                <meta property="og:description" content="Explore all crypto and blockchain categories on CoinMews. Find news, analysis, and insights by topic." />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={window.location.origin + '/categories'} />
+                <meta property="og:image" content="/favicon.png" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Categories - CoinMews" />
+                <meta name="twitter:description" content="Explore all crypto and blockchain categories on CoinMews. Find news, analysis, and insights by topic." />
+                <meta name="twitter:image" content="/favicon.png" />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                    '@context': 'https://schema.org',
+                    '@type': 'CollectionPage',
+                    'name': 'Categories',
+                    'description': 'Explore all crypto and blockchain categories.',
+                    'url': window.location.origin + '/categories',
+                    'breadcrumb': {
+                        '@type': 'BreadcrumbList',
+                        'itemListElement': [
+                            { '@type': 'ListItem', position: 1, name: 'Home', item: window.location.origin },
+                            { '@type': 'ListItem', position: 2, name: 'Categories', item: window.location.origin + '/categories' }
+                        ]
+                    }
+                }) }} />
+            </Head>
             <Header />
 
             {/* Top Ad Space Slider */}
@@ -113,7 +141,7 @@ export default function CategoriesIndex({ categories = [] }: Props) {
                             className={`w-full flex-shrink-0 transition-all duration-500 ease-in-out ${index === currentSlide ? 'block' : 'hidden'}`}
                         >
                             <Link href={slide.link} className="relative block">
-                                <img src={slide.image} alt="Advertisement" className="h-auto w-full rounded-lg object-cover" />
+                                <img src={slide.image} alt="Categories Advertisement" loading="lazy" className="h-auto w-full rounded-lg object-cover" />
                             </Link>
                         </div>
                     ))}

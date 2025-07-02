@@ -197,16 +197,38 @@ export default function Index({ airdrops, filters, stats, blockchains }: Airdrop
         <>
             <Head>
                 <title>Airdrops | CoinMews</title>
-                <meta
-                    name="description"
-                    content="Discover the latest cryptocurrency airdrops, track their requirements, and never miss an opportunity."
-                />
+                <meta name="description" content="Discover the latest cryptocurrency airdrops, track their requirements, and never miss an opportunity." />
+                <meta name="keywords" content="crypto airdrops, free tokens, blockchain giveaways, CoinMews" />
+                <link rel="canonical" href={window.location.origin + '/airdrops'} />
+                <meta property="og:title" content="Airdrops | CoinMews" />
+                <meta property="og:description" content="Discover the latest cryptocurrency airdrops, track their requirements, and never miss an opportunity." />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={window.location.origin + '/airdrops'} />
+                <meta property="og:image" content="/favicon.png" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Airdrops | CoinMews" />
+                <meta name="twitter:description" content="Discover the latest cryptocurrency airdrops, track their requirements, and never miss an opportunity." />
+                <meta name="twitter:image" content="/favicon.png" />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                    '@context': 'https://schema.org',
+                    '@type': 'CollectionPage',
+                    'name': 'Airdrops',
+                    'description': 'Discover the latest cryptocurrency airdrops.',
+                    'url': window.location.origin + '/airdrops',
+                    'breadcrumb': {
+                        '@type': 'BreadcrumbList',
+                        'itemListElement': [
+                            { '@type': 'ListItem', position: 1, name: 'Home', item: window.location.origin },
+                            { '@type': 'ListItem', position: 2, name: 'Airdrops', item: window.location.origin + '/airdrops' }
+                        ]
+                    }
+                }) }} />
             </Head>
             <Header />
 
             <div className="mx-auto max-w-7xl px-4 py-4 lg:px-8">
                 <div className="mb-6">
-                    <h1 className="text-2xl font-bold tracking-tight">Crypto Ongoing Airdrop</h1>
+                    <h1 className="text-4xl font-bold">Crypto Ongoing Airdrop</h1>
                     <p className="text-muted-foreground">
                         Find the newest coin airdrops. Stay informed about the best airdrops and claim free tokens.
                     </p>

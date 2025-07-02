@@ -56,6 +56,8 @@ interface Meta {
         description: string;
         image: string | null;
     };
+    canonical: string;
+    structuredData: any;
 }
 
 interface MemePageProps {
@@ -64,7 +66,7 @@ interface MemePageProps {
     meta: Meta;
 }
 
-export default function MemeShow({ auth, meme, relatedMemes, meta }: PageProps & MemePageProps) {
+export default function MemeShow({ auth, meme, relatedMemes, meta, structuredData }: PageProps & MemePageProps & { structuredData: any }) {
     const [upvotes, setUpvotes] = useState(meme.upvotes_count);
     const [hasUpvoted, setHasUpvoted] = useState(false);
 
@@ -91,9 +93,11 @@ export default function MemeShow({ auth, meme, relatedMemes, meta }: PageProps &
 
     return (
         <div>
-            <Head title={meta.title}>
+            <Head>
+                <title>{meta.title}</title>
                 <meta name="description" content={meta.description} />
                 <meta name="keywords" content={meta.keywords} />
+                <link rel="canonical" href={meta.canonical} />
                 <meta property="og:title" content={meta.og.title} />
                 <meta property="og:description" content={meta.og.description} />
                 {meta.og.image && <meta property="og:image" content={meta.og.image} />}
@@ -103,6 +107,7 @@ export default function MemeShow({ auth, meme, relatedMemes, meta }: PageProps &
                 <meta name="twitter:title" content={meta.twitter.title} />
                 <meta name="twitter:description" content={meta.twitter.description} />
                 {meta.twitter.image && <meta name="twitter:image" content={meta.twitter.image} />}
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
             </Head>
 
             <Header />
@@ -131,7 +136,7 @@ export default function MemeShow({ auth, meme, relatedMemes, meta }: PageProps &
                         {/* Meme Media */}
                         <div className="bg-muted mb-6 overflow-hidden rounded-lg">
                             {meme.media_type === 'image' ? (
-                                <img src={meme.media_url} alt={meme.title} className="mx-auto max-w-full" />
+                                <img src={meme.media_url} alt={meta.title} loading="lazy" className="mx-auto max-w-full" />
                             ) : (
                                 <video src={meme.media_url} controls autoPlay loop muted className="mx-auto max-w-full"></video>
                             )}
@@ -151,7 +156,7 @@ export default function MemeShow({ auth, meme, relatedMemes, meta }: PageProps &
                                 )}
                             </div>
 
-                            <h1 className="mb-4 text-2xl font-bold md:text-3xl">{meme.title}</h1>
+                            <h1 className="text-4xl font-bold">{meta.title}</h1>
 
                             <div className="mb-6 flex items-center justify-between">
                                 <div className="flex items-center gap-4">

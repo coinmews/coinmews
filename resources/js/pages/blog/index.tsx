@@ -163,9 +163,34 @@ const BlogPage: React.FC<BlogPageProps> = ({ articles, categories, filters, filt
 
     return (
         <>
-            <Head title="CoinMews - Crypto Blog & Guest Posts">
-                <link rel="preconnect" href="https://fonts.bunny.net" />
-                <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+            <Head>
+                <title>CoinMews - Crypto Blog & Guest Posts</title>
+                <meta name="description" content="Read the latest crypto blog posts, guest articles, and expert insights on CoinMews. Stay updated with trends, analysis, and opinions from the blockchain world." />
+                <meta name="keywords" content="crypto blog, blockchain articles, guest posts, cryptocurrency news, CoinMews" />
+                <link rel="canonical" href={window.location.origin + '/blog'} />
+                <meta property="og:title" content="CoinMews - Crypto Blog & Guest Posts" />
+                <meta property="og:description" content="Read the latest crypto blog posts, guest articles, and expert insights on CoinMews. Stay updated with trends, analysis, and opinions from the blockchain world." />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={window.location.origin + '/blog'} />
+                <meta property="og:image" content="/favicon.png" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="CoinMews - Crypto Blog & Guest Posts" />
+                <meta name="twitter:description" content="Read the latest crypto blog posts, guest articles, and expert insights on CoinMews. Stay updated with trends, analysis, and opinions from the blockchain world." />
+                <meta name="twitter:image" content="/favicon.png" />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                    '@context': 'https://schema.org',
+                    '@type': 'CollectionPage',
+                    'name': 'CoinMews Blog',
+                    'description': 'Latest crypto blog posts and guest articles.',
+                    'url': window.location.origin + '/blog',
+                    'breadcrumb': {
+                        '@type': 'BreadcrumbList',
+                        'itemListElement': [
+                            { '@type': 'ListItem', position: 1, name: 'Home', item: window.location.origin },
+                            { '@type': 'ListItem', position: 2, name: 'Blog', item: window.location.origin + '/blog' }
+                        ]
+                    }
+                }) }} />
             </Head>
             <Header />
 
@@ -178,7 +203,7 @@ const BlogPage: React.FC<BlogPageProps> = ({ articles, categories, filters, filt
                             className={`w-full flex-shrink-0 transition-all duration-500 ease-in-out${index === currentSlide ? 'block' : 'hidden'}`}
                         >
                             <a href={slide.link} target="_blank" rel="noopener noreferrer">
-                                <img src={slide.image} alt="Advertisement" className="h-auto w-full rounded-lg object-cover" />
+                                <img src={slide.image} alt="Crypto Blog Advertisement" loading="lazy" className="h-auto w-full rounded-lg object-cover" />
                             </a>
                         </div>
                     ))}
@@ -206,7 +231,7 @@ const BlogPage: React.FC<BlogPageProps> = ({ articles, categories, filters, filt
             <div className="mx-auto max-w-7xl px-4 lg:px-6">
                 <div className="my-8 space-y-4">
                     <div>
-                        <h1 className="text-3xl font-bold">Crypto Blog & Guest Posts</h1>
+                        <h1 className="text-4xl font-bold">Crypto Blog & Guest Posts</h1>
                         <p className="mt-2 max-w-3xl text-gray-600">
                             Stay updated with the latest trends, insights, and news in the world of cryptocurrency, blockchain, and Web3 technology.
                             Our experts and guest contributors bring you in-depth analysis, tutorials, and market updates.

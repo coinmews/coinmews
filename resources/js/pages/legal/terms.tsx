@@ -5,6 +5,18 @@ import { Head } from '@inertiajs/react';
 export default function TermsPage() {
     return (
         <>
+            <Head>
+                <title>Terms of Service - CoinMews</title>
+                <meta name="description" content="Read the Terms of Service for CoinMews. Understand your rights, responsibilities, and our policies regarding the use of our crypto news platform." />
+                <meta name="keywords" content="terms of service, CoinMews, crypto news, user agreement, policies" />
+                <link rel="canonical" href={typeof window !== 'undefined' ? window.location.origin + '/legal/terms' : 'https://coinmews.io/legal/terms'} />
+                <meta property="og:title" content="Terms of Service - CoinMews" />
+                <meta property="og:description" content="Read the Terms of Service for CoinMews. Understand your rights, responsibilities, and our policies regarding the use of our crypto news platform." />
+                <meta property="og:type" content="article" />
+                <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : 'https://coinmews.io/legal/terms'} />
+                <meta property="og:site_name" content="CoinMews" />
+                <meta name="twitter:card" content="summary" />
+                <meta name="twitter:title" content="Terms of Service - CoinMews" />
             <Head title="Terms of Service - CoinMews" />
             <Header />
             <main className="mx-auto max-w-4xl px-4 py-12 lg:px-8">

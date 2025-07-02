@@ -13,6 +13,9 @@ createServer((page) =>
         title: (title) => `${title} - ${appName}`,
         resolve: (name) => resolvePageComponent(`./pages/${name}.tsx`, import.meta.glob('./pages/**/*.tsx')),
         setup: ({ App, props }) => {
+            if (typeof document !== 'undefined' && document.documentElement) {
+                document.documentElement.lang = 'en';
+            }
             /* eslint-disable */
             // @ts-expect-error
             global.route<RouteName> = (name, params, absolute) =>

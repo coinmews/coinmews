@@ -243,11 +243,39 @@ export default function Index({ presales, stages, stats, filters, sort }: Presal
 
     return (
         <>
-            <Head title="Presales" />
+            <Head>
+                <title>Presales | CoinMews</title>
+                <meta name="description" content="Find the latest crypto presales, token launches, and early investment opportunities on CoinMews." />
+                <meta name="keywords" content="crypto presales, token launches, early investment, CoinMews" />
+                <link rel="canonical" href={window.location.origin + '/presales'} />
+                <meta property="og:title" content="Presales | CoinMews" />
+                <meta property="og:description" content="Find the latest crypto presales, token launches, and early investment opportunities on CoinMews." />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={window.location.origin + '/presales'} />
+                <meta property="og:image" content="/favicon.png" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Presales | CoinMews" />
+                <meta name="twitter:description" content="Find the latest crypto presales, token launches, and early investment opportunities on CoinMews." />
+                <meta name="twitter:image" content="/favicon.png" />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                    '@context': 'https://schema.org',
+                    '@type': 'CollectionPage',
+                    'name': 'Presales',
+                    'description': 'Find the latest crypto presales and token launches.',
+                    'url': window.location.origin + '/presales',
+                    'breadcrumb': {
+                        '@type': 'BreadcrumbList',
+                        'itemListElement': [
+                            { '@type': 'ListItem', position: 1, name: 'Home', item: window.location.origin },
+                            { '@type': 'ListItem', position: 2, name: 'Presales', item: window.location.origin + '/presales' }
+                        ]
+                    }
+                }) }} />
+            </Head>
             <Header />
             <div className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
                 <div className="mb-6">
-                    <h1 className="text-3xl font-bold">Presales</h1>
+                    <h1 className="text-4xl font-bold">Crypto Presales</h1>
                     <p className="text-muted-foreground">Discover and participate in upcoming token presales</p>
                 </div>
 

@@ -80,7 +80,7 @@ export default function Show({ airdrop, similarAirdrops, structuredData, meta }:
                 <meta name="twitter:image" content={meta.twitter.image ?? ''} />
 
                 {/* Structured Data */}
-                <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
             </Head>
 
             <Header />
@@ -95,6 +95,7 @@ export default function Show({ airdrop, similarAirdrops, structuredData, meta }:
                                     src={airdrop.logo_url || '/images/placeholder-logo.png'}
                                     alt={airdrop.name}
                                     className="border-muted h-20 w-20 rounded-full border-2"
+                                    loading="lazy"
                                 />
                                 <div>
                                     <CardTitle className="text-3xl">

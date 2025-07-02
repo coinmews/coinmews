@@ -59,6 +59,8 @@ interface Meta {
         description: string;
         image: string | null;
     };
+    canonical: string;
+    structuredData: any;
 }
 
 interface VideoPageProps {
@@ -67,7 +69,7 @@ interface VideoPageProps {
     meta: Meta;
 }
 
-export default function VideoShow({ auth, video, relatedVideos, meta }: PageProps & VideoPageProps) {
+export default function VideoShow({ auth, video, relatedVideos, meta, structuredData }: PageProps & VideoPageProps & { structuredData: any }) {
     const [upvotes, setUpvotes] = useState(video.upvotes_count);
     const [hasUpvoted, setHasUpvoted] = useState(false);
     const [videoError, setVideoError] = useState(false);
@@ -118,9 +120,11 @@ export default function VideoShow({ auth, video, relatedVideos, meta }: PageProp
 
     return (
         <div>
-            <Head title={meta.title}>
+            <Head>
+                <title>{meta.title}</title>
                 <meta name="description" content={meta.description} />
                 <meta name="keywords" content={meta.keywords} />
+                <link rel="canonical" href={meta.canonical} />
                 <meta property="og:title" content={meta.og.title} />
                 <meta property="og:description" content={meta.og.description} />
                 {meta.og.image && <meta property="og:image" content={meta.og.image} />}
@@ -130,6 +134,7 @@ export default function VideoShow({ auth, video, relatedVideos, meta }: PageProp
                 <meta name="twitter:title" content={meta.twitter.title} />
                 <meta name="twitter:description" content={meta.twitter.description} />
                 {meta.twitter.image && <meta name="twitter:image" content={meta.twitter.image} />}
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
             </Head>
 
             <Header />
@@ -162,7 +167,7 @@ export default function VideoShow({ auth, video, relatedVideos, meta }: PageProp
 
                         {/* Video Info */}
                         <div className="mb-8">
-                            <h1 className="mb-4 text-2xl font-bold md:text-3xl">{video.title}</h1>
+                            <h1 className="text-4xl font-bold">{meta.title}</h1>
 
                             <div className="mb-6 flex items-center justify-between">
                                 <div className="flex items-center gap-4">

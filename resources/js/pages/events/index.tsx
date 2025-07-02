@@ -175,7 +175,35 @@ export default function EventsPage({ events, filters, filterCounts }: EventsPage
 
     return (
         <>
-            <Head title="Events" />
+            <Head>
+                <title>Crypto Events | CoinMews</title>
+                <meta name="description" content="Discover upcoming crypto and blockchain events, conferences, and webinars. Stay connected with the global crypto community on CoinMews." />
+                <meta name="keywords" content="crypto events, blockchain conferences, crypto webinars, CoinMews" />
+                <link rel="canonical" href={window.location.origin + '/events'} />
+                <meta property="og:title" content="Crypto Events | CoinMews" />
+                <meta property="og:description" content="Discover upcoming crypto and blockchain events, conferences, and webinars. Stay connected with the global crypto community on CoinMews." />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={window.location.origin + '/events'} />
+                <meta property="og:image" content="/favicon.png" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Crypto Events | CoinMews" />
+                <meta name="twitter:description" content="Discover upcoming crypto and blockchain events, conferences, and webinars. Stay connected with the global crypto community on CoinMews." />
+                <meta name="twitter:image" content="/favicon.png" />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                    '@context': 'https://schema.org',
+                    '@type': 'CollectionPage',
+                    'name': 'Crypto Events',
+                    'description': 'Discover upcoming crypto and blockchain events, conferences, and webinars.',
+                    'url': window.location.origin + '/events',
+                    'breadcrumb': {
+                        '@type': 'BreadcrumbList',
+                        'itemListElement': [
+                            { '@type': 'ListItem', position: 1, name: 'Home', item: window.location.origin },
+                            { '@type': 'ListItem', position: 2, name: 'Events', item: window.location.origin + '/events' }
+                        ]
+                    }
+                }) }} />
+            </Head>
             <Header />
 
             {/* Top Ad Space Slider */}
@@ -187,7 +215,7 @@ export default function EventsPage({ events, filters, filterCounts }: EventsPage
                             className={`w-full flex-shrink-0 transition-all duration-500 ease-in-out${index === currentSlide ? 'block' : 'hidden'}`}
                         >
                             <a href={slide.link} target="_blank" rel="noopener noreferrer">
-                                <img src={slide.image} alt="Advertisement" className="h-auto w-full rounded-lg object-cover" />
+                                <img src={slide.image} alt="Events Advertisement" loading="lazy" className="h-auto w-full rounded-lg object-cover" />
                             </a>
                         </div>
                     ))}
@@ -215,7 +243,7 @@ export default function EventsPage({ events, filters, filterCounts }: EventsPage
             <div className="mx-auto max-w-7xl px-4 lg:px-6">
                 <div className="my-8 space-y-4">
                     <div>
-                        <h1 className="text-3xl font-bold">Global Crypto Events & Conferences</h1>
+                        <h1 className="text-4xl font-bold">Crypto Events</h1>
                         <p className="mt-2 max-w-3xl text-gray-600">
                             Stay updated on crypto events from 2025. Explore blockchain conferences, meetups, and summits. Connect with experts, find
                             new projects, and learn about Web3 trends. Check our crypto events calendar for the latest updates and opportunities!

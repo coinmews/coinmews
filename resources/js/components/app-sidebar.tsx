@@ -2,10 +2,11 @@ import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
-import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import { Bookmark, FileText, Folder, LayoutGrid } from 'lucide-react';
 import AppLogo from './app-logo';
+
+type NavItem = any;
 
 const mainNavItems: NavItem[] = [
     {
@@ -35,7 +36,7 @@ const footerNavItems: NavItem[] = [
 
 export function AppSidebar() {
     return (
-        <Sidebar collapsible="icon" variant="inset">
+        <Sidebar collapsible="icon" variant="inset" role="navigation" aria-label="Sidebar navigation">
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>

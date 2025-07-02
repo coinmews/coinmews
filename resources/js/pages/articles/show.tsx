@@ -41,14 +41,17 @@ export default function ArticleShowPage({ article, relatedArticles, structuredDa
             <Head>
                 <title>{meta.title}</title>
                 <meta name="description" content={meta.description} />
-                <meta property="og:title" content={meta.title} />
-                <meta property="og:description" content={meta.description} />
+                <meta name="keywords" content={meta.keywords} />
+                <link rel="canonical" href={meta.canonical} />
+                <meta property="og:title" content={meta.og.title} />
+                <meta property="og:description" content={meta.og.description} />
                 <meta property="og:image" content={article.banner_url || ''} />
-                <meta property="og:url" content={window.location.href} />
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content={meta.title} />
-                <meta name="twitter:description" content={meta.description} />
-                <meta name="twitter:image" content={article.banner_url || ''} />
+                <meta property="og:type" content={meta.og.type || 'article'} />
+                <meta property="og:url" content={meta.og.url || window.location.href} />
+                <meta name="twitter:card" content={meta.twitter.card || 'summary_large_image'} />
+                <meta name="twitter:title" content={meta.twitter.title} />
+                <meta name="twitter:description" content={meta.twitter.description} />
+                <meta name="twitter:image" content={meta.twitter.image || article.banner_url || ''} />
                 <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
             </Head>
             <Header />

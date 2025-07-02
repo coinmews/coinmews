@@ -5,7 +5,34 @@ import { Head } from '@inertiajs/react';
 export default function CookiesPage() {
     return (
         <>
-            <Head title="Cookie Policy - CoinMews" />
+            <Head>
+                <title>Cookie Policy - CoinMews</title>
+                <meta name="description" content="Read the Cookie Policy for CoinMews. Learn how we use cookies and similar technologies to enhance your experience on our crypto news platform." />
+                <meta name="keywords" content="cookie policy, CoinMews, cookies, privacy, crypto news" />
+                <link rel="canonical" href={typeof window !== 'undefined' ? window.location.origin + '/legal/cookies' : 'https://coinmews.io/legal/cookies'} />
+                <meta property="og:title" content="Cookie Policy - CoinMews" />
+                <meta property="og:description" content="Read the Cookie Policy for CoinMews. Learn how we use cookies and similar technologies to enhance your experience on our crypto news platform." />
+                <meta property="og:type" content="article" />
+                <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : 'https://coinmews.io/legal/cookies'} />
+                <meta property="og:site_name" content="CoinMews" />
+                <meta name="twitter:card" content="summary" />
+                <meta name="twitter:title" content="Cookie Policy - CoinMews" />
+                <meta name="twitter:description" content="Read the Cookie Policy for CoinMews. Learn how we use cookies and similar technologies to enhance your experience on our crypto news platform." />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                    '@context': 'https://schema.org',
+                    '@type': 'WebPage',
+                    'name': 'Cookie Policy - CoinMews',
+                    'description': 'Read the Cookie Policy for CoinMews. Learn how we use cookies and similar technologies to enhance your experience on our crypto news platform.',
+                    'url': typeof window !== 'undefined' ? window.location.origin + '/legal/cookies' : 'https://coinmews.io/legal/cookies',
+                    'breadcrumb': {
+                        '@type': 'BreadcrumbList',
+                        'itemListElement': [
+                            { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': typeof window !== 'undefined' ? window.location.origin : 'https://coinmews.io' },
+                            { '@type': 'ListItem', 'position': 2, 'name': 'Cookie Policy', 'item': typeof window !== 'undefined' ? window.location.origin + '/legal/cookies' : 'https://coinmews.io/legal/cookies' }
+                        ]
+                    }
+                }) }} />
+            </Head>
             <Header />
             <main className="mx-auto max-w-4xl px-4 py-12 lg:px-8">
                 <article className="prose prose-neutral dark:prose-invert lg:prose-lg max-w-none">

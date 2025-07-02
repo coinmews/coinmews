@@ -1,4 +1,4 @@
-x<?php
+<?php
 
 use Filament\Facades\Filament;
 use Filament\Http\Controllers\Auth\EmailVerificationController;

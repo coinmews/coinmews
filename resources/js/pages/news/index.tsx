@@ -179,9 +179,34 @@ const NewsPage: React.FC<NewsPageProps> = ({ articles, categories, filters, filt
 
     return (
         <>
-            <Head title="CoinMews - Latest Crypto News">
-                <link rel="preconnect" href="https://fonts.bunny.net" />
-                <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+            <Head>
+                <title>CoinMews - Latest Crypto News</title>
+                <meta name="description" content="Stay updated with the latest cryptocurrency news, breaking stories, and blockchain updates on CoinMews." />
+                <meta name="keywords" content="crypto news, blockchain news, cryptocurrency updates, breaking news, CoinMews" />
+                <link rel="canonical" href={window.location.origin + '/news'} />
+                <meta property="og:title" content="CoinMews - Latest Crypto News" />
+                <meta property="og:description" content="Stay updated with the latest cryptocurrency news, breaking stories, and blockchain updates on CoinMews." />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={window.location.origin + '/news'} />
+                <meta property="og:image" content="/favicon.png" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="CoinMews - Latest Crypto News" />
+                <meta name="twitter:description" content="Stay updated with the latest cryptocurrency news, breaking stories, and blockchain updates on CoinMews." />
+                <meta name="twitter:image" content="/favicon.png" />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                    '@context': 'https://schema.org',
+                    '@type': 'CollectionPage',
+                    'name': 'CoinMews News',
+                    'description': 'Latest cryptocurrency news and blockchain updates.',
+                    'url': window.location.origin + '/news',
+                    'breadcrumb': {
+                        '@type': 'BreadcrumbList',
+                        'itemListElement': [
+                            { '@type': 'ListItem', position: 1, name: 'Home', item: window.location.origin },
+                            { '@type': 'ListItem', position: 2, name: 'News', item: window.location.origin + '/news' }
+                        ]
+                    }
+                }) }} />
             </Head>
             <Header />
 
@@ -194,7 +219,7 @@ const NewsPage: React.FC<NewsPageProps> = ({ articles, categories, filters, filt
                             className={`w-full flex-shrink-0 transition-all duration-500 ease-in-out${index === currentSlide ? 'block' : 'hidden'}`}
                         >
                             <a href={slide.link} target="_blank" rel="noopener noreferrer">
-                                <img src={slide.image} alt="Advertisement" className="h-auto w-full rounded-lg object-cover" />
+                                <img src={slide.image} alt="Crypto News Advertisement" loading="lazy" className="h-auto w-full rounded-lg object-cover" />
                             </a>
                         </div>
                     ))}
@@ -222,7 +247,7 @@ const NewsPage: React.FC<NewsPageProps> = ({ articles, categories, filters, filt
             <div className="mx-auto max-w-7xl px-4 lg:px-6">
                 <div className="my-8 space-y-4">
                     <div>
-                        <h1 className="text-3xl font-bold">Latest Crypto News</h1>
+                        <h1 className="text-4xl font-bold">Latest Crypto News</h1>
                         <p className="mt-2 max-w-3xl text-gray-600">
                             Stay updated with the latest news, market trends, and developments in the world of cryptocurrency, blockchain, and Web3
                             technology. Breaking news, short updates, and in-depth analysis delivered to you in real-time.

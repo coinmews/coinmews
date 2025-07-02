@@ -25,7 +25,9 @@
         
         <!-- Favicon -->
         <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-        <link rel="icon" type="image/png" href="/favicon.png">
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&family=instrument-sans:400,500,600" rel="stylesheet" />
@@ -37,6 +39,7 @@
         <script src="https://widgets.coingecko.com/gecko-coin-price-marquee-widget.js"></script>
     </head>
     <body class="font-sans antialiased">
+        <a href="#main-content" class="sr-only focus:not-sr-only absolute top-2 left-2 z-50 rounded bg-primary px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary">Skip to main content</a>
         @inertia
     </body>
 </html>

@@ -39,11 +39,39 @@ const mockSavedContent = [
 export default function SavedContent() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Saved Content" />
+            <Head>
+                <title>Saved Items | CoinMews</title>
+                <meta name="description" content="Access your saved crypto articles, news, and resources on CoinMews. Quickly revisit your favorite content." />
+                <meta name="keywords" content="saved crypto articles, saved news, CoinMews" />
+                <link rel="canonical" href={window.location.origin + '/saved'} />
+                <meta property="og:title" content="Saved Items | CoinMews" />
+                <meta property="og:description" content="Access your saved crypto articles, news, and resources on CoinMews. Quickly revisit your favorite content." />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={window.location.origin + '/saved'} />
+                <meta property="og:image" content="/favicon.png" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Saved Items | CoinMews" />
+                <meta name="twitter:description" content="Access your saved crypto articles, news, and resources on CoinMews. Quickly revisit your favorite content." />
+                <meta name="twitter:image" content="/favicon.png" />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                    '@context': 'https://schema.org',
+                    '@type': 'CollectionPage',
+                    'name': 'Saved Items',
+                    'description': 'Access your saved crypto articles, news, and resources.',
+                    'url': window.location.origin + '/saved',
+                    'breadcrumb': {
+                        '@type': 'BreadcrumbList',
+                        'itemListElement': [
+                            { '@type': 'ListItem', position: 1, name: 'Home', item: window.location.origin },
+                            { '@type': 'ListItem', position: 2, name: 'Saved', item: window.location.origin + '/saved' }
+                        ]
+                    }
+                }) }} />
+            </Head>
 
             <div className="space-y-6 px-4 py-6">
                 <div>
-                    <h1 className="text-2xl font-semibold tracking-tight">Saved Content</h1>
+                    <h1 className="text-4xl font-bold">Saved Items</h1>
                     <p className="text-muted-foreground">Access your saved articles and content</p>
                 </div>
 
