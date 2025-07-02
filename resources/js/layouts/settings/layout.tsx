@@ -2,9 +2,11 @@ import Heading from '@/components/heading';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
-import { type SettingsSidebarNavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import { type PropsWithChildren } from 'react';
+
+// Define the type inline since it's not exported
+type SettingsSidebarNavItem = { title: string; route: string; icon: any };
 
 const sidebarNavItems: SettingsSidebarNavItem[] = [
     {
@@ -15,11 +17,6 @@ const sidebarNavItems: SettingsSidebarNavItem[] = [
     {
         title: 'Password',
         route: 'password.edit',
-        icon: null,
-    },
-    {
-        title: 'Appearance',
-        route: 'appearance',
         icon: null,
     },
 ];

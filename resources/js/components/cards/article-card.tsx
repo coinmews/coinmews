@@ -1,6 +1,5 @@
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card';
-import useTheme from '@/hooks/useTheme';
 import { cn } from '@/lib/utils';
 import { Article } from '@/types/articleTypes';
 import { Link } from '@inertiajs/react';
@@ -69,7 +68,6 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, darkMode = false }) 
     }
 
     const [imageErrors, setImageErrors] = useState<{ [key: number]: boolean }>({});
-    const { isDarkTheme } = useTheme();
 
     const handleImageError = (articleId: number) => {
         setImageErrors((prev) => ({ ...prev, [articleId]: true }));
@@ -82,7 +80,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, darkMode = false }) 
     };
 
     // Use explicit darkMode prop OR system dark theme setting
-    const shouldUseDarkMode = darkMode || isDarkTheme;
+    const shouldUseDarkMode = darkMode;
 
     return (
         <Link href={`/articles/${article.slug}`}>

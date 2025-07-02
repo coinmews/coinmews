@@ -1,5 +1,4 @@
 import AppLogo from '@/components/app-logo';
-import AppearanceToggleDropdown from '@/components/appearance-dropdown';
 import { BrandsWhatsapp, BrandsX } from '@/components/icons';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -286,7 +285,6 @@ export default function Header() {
                                 </TooltipProvider>
                             ))}
                         </div>
-                        <AppearanceToggleDropdown />
                     </div>
                 </div>
             </div>
