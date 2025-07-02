@@ -4,7 +4,6 @@ import { createInertiaApp, router } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
 import BackToTop from './components/back-to-top';
-import { initializeTheme } from './hooks/use-appearance';
 
 const appName = import.meta.env.VITE_APP_NAME || 'CoinMews';
 
@@ -28,9 +27,6 @@ createInertiaApp({
         color: '#2563eb',
     },
 });
-
-// This will set light / dark mode on load...
-initializeTheme();
 
 // Track page views when routes change
 router.on('navigate', (event) => {
