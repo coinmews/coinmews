@@ -252,6 +252,58 @@ class SubmissionResource extends Resource
                             ->visibility('public')
                             ->visible(fn(Forms\Get $get): bool => $get('type') !== null && in_array($get('type'), ['event', 'press_release', 'guest_post', 'sponsored_content'])),
                     ])->columns(1),
+
+                // SEO & Metadata fields
+                Forms\Components\Section::make('SEO & Metadata')
+                    ->schema([
+                        Forms\Components\TextInput::make('meta_title')
+                            ->label('Meta Title')
+                            ->maxLength(70)
+                            ->helperText('Optional. Defaults to Title.'),
+                        Forms\Components\Textarea::make('meta_description')
+                            ->label('Meta Description')
+                            ->maxLength(160)
+                            ->helperText('Optional. Used for search engines and social sharing.'),
+                        Forms\Components\TextInput::make('meta_keywords')
+                            ->label('Meta Keywords')
+                            ->helperText('Comma-separated keywords (optional).'),
+                        Forms\Components\TextInput::make('canonical_url')
+                            ->label('Canonical URL')
+                            ->url()
+                            ->helperText('If this article is syndicated or reposted.'),
+                        Forms\Components\TextInput::make('slug')
+                            ->label('Slug (URL)')
+                            ->maxLength(120)
+                            ->helperText('Auto-generated from title, but you can edit.'),
+                        Forms\Components\TextInput::make('author_name')
+                            ->label('Author Name')
+                            ->maxLength(60)
+                            ->helperText('Optional. Defaults to submitter.'),
+                        Forms\Components\Textarea::make('excerpt')
+                            ->label('Article Excerpt')
+                            ->maxLength(200)
+                            ->helperText('Short summary for previews and meta description.'),
+                        Forms\Components\FileUpload::make('featured_image')
+                            ->label('Featured Image')
+                            ->image()
+                            ->directory('articles/featured')
+                            ->helperText('Used for Open Graph, Twitter, and rich snippets.'),
+                        Forms\Components\FileUpload::make('og_image')
+                            ->label('Open Graph/Twitter Image')
+                            ->image()
+                            ->directory('articles/og')
+                            ->helperText('Optional. Defaults to Featured Image.'),
+                        Forms\Components\Select::make('tags')
+                            ->label('Tags')
+                            ->multiple()
+                            ->relationship('tags', 'name')
+                            ->helperText('Select relevant tags.'),
+                        Forms\Components\Select::make('categories')
+                            ->label('Categories')
+                            ->multiple()
+                            ->relationship('categories', 'name')
+                            ->helperText('Select relevant categories.'),
+                    ])->columns(2),
             ]);
     }
 
