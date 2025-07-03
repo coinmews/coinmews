@@ -29,6 +29,13 @@ const formatViewCount = (count: number): string => {
     return count.toString();
 };
 
+const formatDateSafe = (dateString?: string | null) => {
+    if (!dateString) return 'Date unavailable';
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return 'Date unavailable';
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+};
+
 const ArticleCard = ({ article }: { article: Article }) => {
     return (
         <a
@@ -81,7 +88,7 @@ const ArticleCard = ({ article }: { article: Article }) => {
                     <span>•</span>
                     <span className="flex items-center gap-1">
                         <CalendarIcon className="h-3 w-3" />
-                        <span>{new Date(article.created_at).toLocaleDateString()}</span>
+                        <span>{formatDateSafe(article.published_at || article.created_at)}</span>
                     </span>
                     {/* {article.view_count > 0 && (
                         <>

@@ -6,6 +6,7 @@ import { Article } from '@/types/articleTypes';
 import { CalendarIcon, ChevronDownIcon } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import ArticleCard from '../cards/article-card';
+import { formatDistanceToNow } from 'date-fns';
 
 interface FilterByScopeSectionProps {
     featuredArticles?: Article[];
@@ -70,20 +71,17 @@ const formatViewCount = (count: number): string => {
     return count.toString();
 };
 
-const formatTimeAgo = (date: string) => {
-    const now = new Date();
-    const articleDate = new Date(date);
-    const diffInMinutes = Math.floor((now.getTime() - articleDate.getTime()) / (1000 * 60));
+const getTimeAgo = (dateString?: string | null) => {
+    if (!dateString) return 'Just now';
+    const date = new Date(dateString);
+    if (isNaN(date.getTime()) || date.getFullYear() < 2000) return 'Just now';
+    return formatDistanceToNow(date, { addSuffix: true });
+};
 
-    if (diffInMinutes < 60) {
-        return `${diffInMinutes} minutes ago`;
-    } else if (diffInMinutes < 1440) {
-        const hours = Math.floor(diffInMinutes / 60);
-        return `${hours} hours ago`;
-    } else {
-        const days = Math.floor(diffInMinutes / 1440);
-        return `${days} days ago`;
-    }
+const getExcerpt = (article: Article) => {
+    if (article.excerpt && article.excerpt.trim().length > 0) return article.excerpt;
+    if (article.content && article.content.trim().length > 0) return article.content.slice(0, 120) + '...';
+    return '';
 };
 
 const ArticleCardCompact = ({ article }: { article: Article }) => {
@@ -124,10 +122,11 @@ const ArticleCardCompact = ({ article }: { article: Article }) => {
                 <h3 className="line-clamp-2 text-sm leading-snug font-semibold text-neutral-900 transition-all duration-300 group-hover:text-neutral-700 dark:text-white dark:group-hover:text-neutral-300">
                     {article.title}
                 </h3>
+                <p className="line-clamp-2 text-xs text-neutral-600 dark:text-neutral-400">{getExcerpt(article)}</p>
                 <div className="flex flex-wrap items-center gap-2 text-xs text-neutral-400">
                     <span className="flex items-center gap-1">
                         <CalendarIcon className="h-3 w-3" />
-                        <span>{formatTimeAgo(article.created_at)}</span>
+                        <span>{getTimeAgo(article.published_at || article.created_at)}</span>
                     </span>
 
                     {/* <span>•</span>
@@ -320,7 +319,7 @@ const FilterByScopeSection: React.FC<FilterByScopeSectionProps> = (props) => {
                                 <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-neutral-500 dark:text-neutral-400">
                                     <span className="flex items-center gap-1">
                                         <CalendarIcon className="h-3 w-3" />
-                                        <span>{formatTimeAgo(mainFeaturedArticle.created_at)}</span>
+                                        <span>{getTimeAgo(mainFeaturedArticle.created_at)}</span>
                                     </span>
                                     {/* <span className="flex items-center gap-1">
                                         <EyeIcon className="h-3 w-3" />

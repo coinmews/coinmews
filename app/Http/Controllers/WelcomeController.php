@@ -36,12 +36,12 @@ class WelcomeController extends Controller
         $webStories = Article::webStories()->published()->with($with)->latest('published_at')->take(6)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
 
         // Apply filters
-        $featuredArticles = Article::featured()->published()->with($with)->latest('published_at')->take(15)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
-        $breakingNews = Article::breakingNews()->published()->with($with)->latest('published_at')->take(15)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
-        $trendingArticles = Article::trending()->published()->with($with)->latest('published_at')->take(15)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
-        $topArticles = Article::topByViewCount()->published()->with($with)->take(15)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
-        $latestReactedArticles = Article::latestReacted()->published()->with($with)->take(15)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
-        $timeSensitiveArticles = Article::timeSensitive()->published()->with($with)->latest('published_at')->take(15)->get(['id','title','slug','banner_image','content_type','status','published_at','author_id','category_id']);
+        $featuredArticles = Article::featured()->published()->with($with)->latest('published_at')->take(15)->get(['id','title','slug','banner_image','content_type','status','published_at','created_at','excerpt','content','author_id','category_id']);
+        $breakingNews = Article::breakingNews()->published()->with($with)->latest('published_at')->take(15)->get(['id','title','slug','banner_image','content_type','status','published_at','created_at','excerpt','content','author_id','category_id']);
+        $trendingArticles = Article::trending()->published()->with($with)->latest('published_at')->take(15)->get(['id','title','slug','banner_image','content_type','status','published_at','created_at','excerpt','content','author_id','category_id']);
+        $topArticles = Article::topByViewCount()->published()->with($with)->take(15)->get(['id','title','slug','banner_image','content_type','status','published_at','created_at','excerpt','content','author_id','category_id']);
+        $latestReactedArticles = Article::latestReacted()->published()->with($with)->take(15)->get(['id','title','slug','banner_image','content_type','status','published_at','created_at','excerpt','content','author_id','category_id']);
+        $timeSensitiveArticles = Article::timeSensitive()->published()->with($with)->latest('published_at')->take(15)->get(['id','title','slug','banner_image','content_type','status','published_at','created_at','excerpt','content','author_id','category_id']);
 
         // Fetch all published articles (for category section)
         $articles = Article::published()

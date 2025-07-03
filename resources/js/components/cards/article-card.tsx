@@ -6,6 +6,7 @@ import { Link } from '@inertiajs/react';
 import { BookOpenIcon, CalendarIcon, GlobeIcon, UserIcon } from 'lucide-react';
 import React, { useState } from 'react';
 import WebStoryCard from './web-story-card';
+import { formatDistanceToNow } from 'date-fns';
 
 const formatViewCount = (count: number): string => {
     const roundToOneDecimal = (num: number) => {
@@ -59,6 +60,19 @@ const getContentTypeColor = (type: ContentType): string => {
 type ArticleCardProps = {
     article: Article;
     darkMode?: boolean;
+};
+
+const getExcerpt = (article: Article) => {
+    if (article.excerpt && article.excerpt.trim().length > 0) return article.excerpt;
+    if (article.content && article.content.trim().length > 0) return article.content.slice(0, 120) + '...';
+    return '';
+};
+
+const getTimeAgo = (dateString?: string) => {
+    if (!dateString) return 'Just now';
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return 'Just now';
+    return formatDistanceToNow(date, { addSuffix: true });
 };
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ article, darkMode = false }) => {
@@ -171,7 +185,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, darkMode = false }) 
                             {article.title}
                         </CardTitle>
                         <CardDescription className={cn('line-clamp-1 text-sm', shouldUseDarkMode ? 'text-gray-400' : 'text-muted-foreground')}>
-                            {article.excerpt}
+                            {getExcerpt(article)}
                         </CardDescription>
                     </div>
 
@@ -186,9 +200,9 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, darkMode = false }) 
                         <span className="flex items-center gap-1">
                             <CalendarIcon className="h-3 w-3" />
                             {isPublished(article) ? (
-                                <span>{formatDate(article.published_at!)}</span>
+                                <span>{getTimeAgo(article.published_at || undefined) || getTimeAgo(article.created_at || undefined)}</span>
                             ) : (
-                                <span>Draft created {formatDate(article.created_at)}</span>
+                                <span>Draft created {getTimeAgo(article.created_at || undefined)}</span>
                             )}
                         </span>
                         {article.source && (

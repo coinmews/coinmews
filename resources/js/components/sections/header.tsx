@@ -245,16 +245,16 @@ export default function Header() {
     };
 
     return (
-        <div className="sticky top-0 z-50 w-full">
+        <div className="sticky top-0 z-[100] w-full">
             {/* Scroll Progress Bar */}
             <div
                 ref={progressRef}
-                className="bg-gradient-to-r from-primary via-secondary to-accent fixed top-0 left-0 z-50 h-1 transition-all duration-300 ease-out"
+                className="bg-gradient-to-r from-primary via-secondary to-accent fixed top-0 left-0 z-[101] h-1 transition-all duration-300 ease-out"
                 style={{ width: `${scrollProgress}%` }}
             />
 
             {/* Top Bar - Social Links & Theme */}
-            <div className="bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 border-b border-border/20">
+            <div className="bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 border-b border-border/20 z-[100] relative">
                 <div className="mx-auto flex h-10 items-center justify-between px-6 md:max-w-7xl">
                     <div className="flex items-center space-x-4 text-xs text-muted-foreground">
                         <span className="hidden sm:inline-flex items-center gap-1">
@@ -290,7 +290,7 @@ export default function Header() {
             </div>
 
             {/* Main Header - Logo, Search, Auth */}
-            <div className="bg-background/95 backdrop-blur-sm border-b border-border/50">
+            <div className="bg-background/95 backdrop-blur-sm border-b border-border/50 z-[100] relative">
                 <div className="mx-auto flex h-16 items-center justify-between px-6 md:max-w-7xl">
                     {/* Logo */}
                     <Link
@@ -431,7 +431,7 @@ export default function Header() {
             </div>
 
             {/* Navigation Bar */}
-            <div className="bg-muted/30 border-b border-border/30">
+            <div className="bg-muted/30 border-b border-border/30 z-[100] relative">
                 <nav className="mx-auto hidden max-w-7xl items-center justify-start px-6 py-3 lg:flex">
                     <div className="flex items-center space-x-1">
                         {/* News Mega Menu */}

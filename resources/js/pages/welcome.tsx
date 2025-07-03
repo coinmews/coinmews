@@ -13,6 +13,7 @@ import { Article, Category, Tag } from '@/types/articleTypes';
 import { Head, Link } from '@inertiajs/react';
 import { CalendarIcon, TrendingUp, Zap, DollarSign, FileText, BarChart3, Tag as TagIcon, Youtube, ArrowRight, Star, Clock, Eye } from 'lucide-react';
 import React from 'react';
+import { formatDistanceToNow } from 'date-fns';
 
 // Inertia Article Props (for passing all data to React)
 interface WelcomePageProps {
@@ -59,20 +60,17 @@ const WelcomePage: React.FC<WelcomePageProps> = ({
     articles,
     liveFeedNews,
 }) => {
-    const formatTimeAgo = (date: string) => {
-        const now = new Date();
-        const articleDate = new Date(date);
-        const diffInMinutes = Math.floor((now.getTime() - articleDate.getTime()) / (1000 * 60));
+    const getExcerpt = (article: Article) => {
+        if (article.excerpt && article.excerpt.trim().length > 0) return article.excerpt;
+        if (article.content && article.content.trim().length > 0) return article.content.slice(0, 120) + '...';
+        return '';
+    };
 
-        if (diffInMinutes < 60) {
-            return `${diffInMinutes} minutes ago`;
-        } else if (diffInMinutes < 1440) {
-            const hours = Math.floor(diffInMinutes / 60);
-            return `${hours} hours ago`;
-        } else {
-            const days = Math.floor(diffInMinutes / 1440);
-            return `${days} days ago`;
-        }
+    const getTimeAgo = (dateString?: string | null) => {
+        if (!dateString) return 'Just now';
+        const date = new Date(dateString);
+        if (isNaN(date.getTime())) return 'Just now';
+        return formatDistanceToNow(date, { addSuffix: true });
     };
 
     const ArticleCardCompact = ({ article }: { article: Article }) => {
@@ -118,10 +116,11 @@ const WelcomePage: React.FC<WelcomePageProps> = ({
                     <h3 className="line-clamp-2 text-sm leading-snug font-medium text-foreground transition-all duration-300 group-hover:text-primary">
                         {article.title}
                     </h3>
+                    <p className="text-muted-foreground text-xs line-clamp-2">{getExcerpt(article)}</p>
                     <div className="flex items-center gap-2 text-xs text-muted-foreground">
                         <span className="flex items-center gap-1">
                             <CalendarIcon className="h-3 w-3" />
-                            <span>{formatTimeAgo(article.created_at)}</span>
+                            <span>{getTimeAgo(article.published_at || article.created_at)}</span>
                         </span>
                         <span className="flex items-center gap-1">
                             <Eye className="h-3 w-3" />
@@ -157,7 +156,7 @@ const WelcomePage: React.FC<WelcomePageProps> = ({
                     </h3>
                     <div className="flex items-center gap-1 text-xs text-muted-foreground">
                         <CalendarIcon className="h-3 w-3" />
-                        <span>{formatTimeAgo(article.created_at)}</span>
+                        <span>{getTimeAgo(article.published_at || article.created_at)}</span>
                     </div>
                 </div>
             </a>
