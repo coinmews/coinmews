@@ -93,7 +93,7 @@ class Article extends Model
             return asset('default-banner.png');
         }
         
-        return Storage::url($this->banner_image);
+        return Storage::disk('r2')->url($this->banner_image);
     }
 
     public function getBannerImageUrlAttribute()
@@ -107,7 +107,7 @@ class Article extends Model
             return asset('default-banner.png');
         }
         
-        return Storage::url($this->banner_image);
+        return Storage::disk('r2')->url($this->banner_image);
     }
 
     // Relationships
