@@ -267,26 +267,27 @@ class ArticleResource extends Resource
                 Forms\Components\Section::make('Media')
                     ->schema([
                         Forms\Components\FileUpload::make('banner_image')
-                            ->image()
+                            ->label('Banner Image')
                             ->required()
                             ->disk('r2')
                             ->visibility('public')
                             ->directory('articles')
-                            ->maxSize(5120)
-                            ->imageResizeMode('cover')
-                            ->imageCropAspectRatio('1200:630')
-                            ->imageResizeTargetWidth('1200')
-                            ->imageResizeTargetHeight('630')
-                            ->imageResizeUpscale(false)
-                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->maxSize(10240)
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/avif'])
                             ->storeFileNamesIn('original_filename')
                             ->getUploadedFileNameForStorageUsing(
-                                fn(TemporaryUploadedFile $file): string => str()->slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME))
-                                    . '_'
-                                    . uniqid()
-                                    . '.'
-                                    . $file->getClientOriginalExtension()
-                            ),
+                                fn (TemporaryUploadedFile $file): string => 
+                                    str()->slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . 
+                                    '_' . 
+                                    uniqid() . 
+                                    '.' . 
+                                    strtolower($file->getClientOriginalExtension())
+                            )
+                            ->helperText('Upload a high-quality image (JPEG, PNG, WebP, or AVIF). Recommended size: 1200x630px. Max size: 10MB.')
+                            ->downloadable()
+                            ->openable()
+                            ->previewable(true)
+                            ->imagePreviewHeight('200px'),
                     ])->columns(1),
 
                 Forms\Components\Section::make('SEO')
